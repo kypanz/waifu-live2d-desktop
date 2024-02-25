@@ -96,7 +96,7 @@ export class TouchManager {
    * @param deviceY タッチした画面のyの値
    */
   // Note : On Click
-  // Todo : here you need to handle the event emited when touch the screen
+  // TODO : here you need to handle the event emited when touch the screen
   public touchesBegan(deviceX: number, deviceY: number): void {
     this._lastX = deviceX;
     this._lastY = deviceY;
@@ -113,7 +113,7 @@ export class TouchManager {
    * @param deviceY タッチした画面のyの値
    */
   // Note : On Drag
-  // Todo : here you can add an effect in drag movement
+  // TODO : here you can add an effect in drag movement
   public touchesMoved(deviceX: number, deviceY: number): void {
     this._lastX = deviceX;
     this._lastY = deviceY;
@@ -130,7 +130,7 @@ export class TouchManager {
    * @return フリック距離
    */
   // this is the difference of distance
-  // todo : Add an event effect here if you want to handle the distance of your mouse and the character
+  // TODO : Add an event effect here if you want to handle the distance of your mouse and the character
   public getFlickDistance(): number {
     return this.calculateDistance(
       this._startX,

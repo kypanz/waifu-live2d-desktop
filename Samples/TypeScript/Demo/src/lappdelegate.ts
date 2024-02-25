@@ -87,7 +87,7 @@ export class LAppDelegate {
 
     // キャンバスを DOM に追加
     // Adding the canvas
-    // todo : here add the canvas to the body
+    // TODO : here add the canvas to the body
     document.body.appendChild(canvas);
 
     if (!frameBuffer) {

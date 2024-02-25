@@ -14,7 +14,7 @@ import { LogLevel } from '@framework/live2dcubismframework';
 // Canvas width and height pixel values, or dynamic screen size ('auto').
 export const CanvasSize: { width: number; height: number } | 'auto' = 'auto';
 
-// 画面
+// This define some values about the windows properties view
 export const ViewScale = 1.0;
 export const ViewMaxScale = 2.0;
 export const ViewMinScale = 0.8;
@@ -46,8 +46,8 @@ export const PowerImageName = 'CloseNormal.png';
 // モデルを配置したディレクトリ名の配列
 // ディレクトリ名とmodel3.jsonの名前を一致させておくこと
 export const ModelDir: string[] = [
+  'haru',
   'Mao',
-  'Haru',
   'Hiyori',
   'Mark',
   'Natori',
@@ -56,10 +56,12 @@ export const ModelDir: string[] = [
 export const ModelDirSize: number = ModelDir.length;
 
 // 外部定義ファイル（json）と合わせる
+// Taking the motions from the json files
 export const MotionGroupIdle = 'Idle'; // アイドリング
 export const MotionGroupTapBody = 'TapBody'; // 体をタップしたとき
 
 // 外部定義ファイル（json）と合わせる
+// Hitarea
 export const HitAreaNameHead = 'Head';
 export const HitAreaNameBody = 'Body';
 

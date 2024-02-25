@@ -463,6 +463,7 @@ export class LAppModel extends CubismUserModel {
     this._model.loadParameters(); // 前回セーブされた状態をロード
     if (this._motionManager.isFinished()) {
       // モーションの再生がない場合、待機モーションの中からランダムで再生する
+      // TODO : Motion
       const hard_coded = LAppDefine.MotionGroupTapBody
       this.startRandomMotion(
         //LAppDefine.MotionGroupIdle,
@@ -625,7 +626,7 @@ export class LAppModel extends CubismUserModel {
    * @param onFinishedMotionHandler モーション再生終了時に呼び出されるコールバック関数
    * @return 開始したモーションの識別番号を返す。個別のモーションが終了したか否かを判定するisFinished()の引数で使用する。開始できない時は[-1]
    */
-  // todo : here emit an event when random motion is generated
+  // TODO : here emit an event when random motion is generated
   public startRandomMotion(
     group: string,
     priority: number,
@@ -635,9 +636,13 @@ export class LAppModel extends CubismUserModel {
       return InvalidMotionQueueEntryHandleValue;
     }
 
-    const no: number = Math.floor(
+    // TODO : if the motion open the mouth ( call to OpenAI api )
+    // Also define a infinite loop of the same motion, if the speak stops, retake the nexts random motions
+    // Number of the motion selected
+    const random_motion = Math.floor(
       Math.random() * this._modelSetting.getMotionCount(group)
     );
+    const no: number = random_motion;
 
     runTest(this._motions._keyValues[no].first);
 
@@ -672,7 +677,7 @@ export class LAppModel extends CubismUserModel {
   }
 
   // This code is not gonna be. necessary i think
-  // todo : Handle here the Expressions of the character
+  // TODO : Handle here the Expressions of the character
   public setRandomExpression(): void {
 
     if (this._expressions.getSize() == 0) {
@@ -933,12 +938,12 @@ export class LAppModel extends CubismUserModel {
   _consistency: boolean; // MOC3一貫性チェック管理用
 }
 
-// todo : say something
+// TODO : say something
 export function runTest(msg: string) {
   try {
     const chat_box = document.getElementById('chat-box');
     chat_box.innerHTML = `Current Motion => ${msg}`;
   } catch (error) {
-    console.log('error on render ? ...', error);
+    console.error('error on render ? ...', error);
   }
 }
