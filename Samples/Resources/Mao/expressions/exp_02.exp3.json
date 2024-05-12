@@ -100,7 +100,7 @@
 		},
 		{
 			"Id": "ParamMouthA",
-			"Value": 0,
+			"Value": 1,
 			"Blend": "Add"
 		},
 		{

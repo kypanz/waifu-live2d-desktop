@@ -6,6 +6,7 @@
  */
 
 import { LAppPal } from './lapppal';
+import { LAppLive2DManager } from './lapplive2dmanager';
 
 export let s_instance: LAppWavFileHandler = null;
 
@@ -92,7 +93,21 @@ export class LAppWavFileHandler {
     // RMS値をリセット
     this._lastRms = 0.0;
 
+    // console.log('Searching for audio ???');
+
+    
+
+    console.log('buscando => ', filePath);
     if (!this.loadWavFile(filePath)) {
+      console.log('se ejecuta esto del loadWavFile !')
+      // TODO : lips, aqui van el movimiento de la boca
+      //console.log('MANAGER MODEL => ', ; 
+      const current_model = LAppLive2DManager.getInstance()._models._ptr[0];
+      const ky_expression = current_model._expressions._keyValues;
+      current_model.setExpression(ky_expression[1].first);
+      const audio: any = document.getElementById('voice');
+      audio.src = filePath;
+      audio.play();
       return;
     }
   }

@@ -50,13 +50,17 @@
 			],
 			"TapBody": [
 				{
-					"File": "motions/mtn_02.motion3.json"
+					"File": "motions/mtn_02.motion3.json",
+				  	"Sound": "sounds/haru_normal_05.wav"
+        },
+				{
+					"File": "motions/mtn_03.motion3.json",
+          	"Sound": "sounds/haru_normal_05.wav"
 				},
 				{
-					"File": "motions/mtn_03.motion3.json"
-				},
-				{
-					"File": "motions/mtn_04.motion3.json"
+					"File": "motions/mtn_04.motion3.json",
+          	"Sound": "sounds/haru_normal_05.wav"
+
 				},
 				{
 					"File": "motions/special_01.motion3.json"
@@ -79,7 +83,7 @@
 		{
 			"Target": "Parameter",
 			"Name": "LipSync",
-			"Ids": []
+			"Ids": ["ParamMouthOpenY"]
 		}
 	],
 	"HitAreas": [

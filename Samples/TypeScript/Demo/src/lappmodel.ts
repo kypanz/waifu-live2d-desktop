@@ -77,6 +77,11 @@ enum LoadStep {
  * モデル生成、機能コンポーネント生成、更新処理とレンダリングの呼び出しを行う。
  */
 export class LAppModel extends CubismUserModel {
+  
+  // TODO : This create the audio property to handle the avatar speak 
+  private _audioSrc: any;
+  private _temp_expression: boolean = true;
+
   /**
    * model3.jsonが置かれたディレクトリとファイルパスからモデルを生成する
    * @param dir
@@ -471,6 +476,7 @@ export class LAppModel extends CubismUserModel {
         LAppDefine.PriorityIdle
       );
     } else {
+      console.log('pasa por antes del updateMotion');
       motionUpdated = this._motionManager.updateMotion(
         this._model,
         deltaTimeSeconds
@@ -488,6 +494,7 @@ export class LAppModel extends CubismUserModel {
     }
 
     if (this._expressionManager != null) {
+      // todo : actualizador de expresiones ( render X time ) 
       this._expressionManager.updateMotion(this._model, deltaTimeSeconds); // 表情でパラメータ更新（相対変化）
     }
 
@@ -523,7 +530,7 @@ export class LAppModel extends CubismUserModel {
     // リップシンクの設定
     if (this._lipsync) {
       let value = 0.0; // リアルタイムでリップシンクを行う場合、システムから音量を取得して、0~1の範囲で値を入力します。
-
+      // console.log('LIPPP SYNC ???');
       this._wavFileHandler.update(deltaTimeSeconds);
       value = this._wavFileHandler.getRms();
 
@@ -538,6 +545,14 @@ export class LAppModel extends CubismUserModel {
     }
 
     this._model.update();
+
+    // TODO : Add here the audio logic
+    // const audio: any = document.getElementById('voice');
+    // if (audio.src !== this._audioSrc) {
+    //   this._audioSrc = audio.src;
+    //   audio.play();
+    // }
+
   }
 
   /**
@@ -601,11 +616,18 @@ export class LAppModel extends CubismUserModel {
       motion.setFinishedMotionHandler(onFinishedMotionHandler);
     }
 
+    // TODO : voice handler here
     //voice
     const voice = this._modelSetting.getMotionSoundFileName(group, no);
     if (voice.localeCompare('') != 0) {
+    const test = true;
+    // if (test) {
+      console.log('group => ', group);
+      console.log('numero => ', no);
+      console.log('Se busco en => ', this._modelSetting.getMotionSoundFileName(group, no));
       let path = voice;
       path = this._modelHomeDir + path;
+      console.log('path generado => ', path);
       this._wavFileHandler.start(path);
     }
 
@@ -642,8 +664,8 @@ export class LAppModel extends CubismUserModel {
     const random_motion = Math.floor(
       Math.random() * this._modelSetting.getMotionCount(group)
     );
-    const no: number = random_motion;
-
+    // const no: number = random_motion;
+const no: number = 1;
     runTest(this._motions._keyValues[no].first);
 
     return this.startMotion(group, no, priority, onFinishedMotionHandler);
@@ -685,6 +707,7 @@ export class LAppModel extends CubismUserModel {
     }
 
     const no: number = Math.floor(Math.random() * this._expressions.getSize());
+    console.log('expressiones => ', this._expressions);
     for (let i = 0; i < this._expressions.getSize(); i++) {
       if (i == no) {
         const name: string = this._expressions._keyValues[i].first;
