@@ -233,7 +233,7 @@ export class LAppWavFileHandler {
             this._pcmData[channelCount][sampleCount] = this.getPcmSample();
           }
         }
-
+// console.log('wavfile es => ', ret);
         ret = true;
       } catch (e) {
         console.log(e);

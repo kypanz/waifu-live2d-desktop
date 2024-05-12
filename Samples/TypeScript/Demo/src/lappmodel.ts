@@ -324,7 +324,7 @@ export class LAppModel extends CubismUserModel {
     // LipSyncIds
     const setupLipSyncIds = (): void => {
       const lipSyncIdCount = this._modelSetting.getLipSyncParameterCount();
-
+console.log('contador lips id => ', lipSyncIdCount);
       for (let i = 0; i < lipSyncIdCount; ++i) {
         this._lipSyncIds.pushBack(this._modelSetting.getLipSyncParameterId(i));
       }
@@ -533,8 +533,10 @@ export class LAppModel extends CubismUserModel {
       // console.log('LIPPP SYNC ???');
       this._wavFileHandler.update(deltaTimeSeconds);
       value = this._wavFileHandler.getRms();
+      console.log('Get RMS =>', value);
 
       for (let i = 0; i < this._lipSyncIds.getSize(); ++i) {
+        console.log('ID => ', this._lipSyncIds.at(i));
         this._model.addParameterValueById(this._lipSyncIds.at(i), value, 0.8);
       }
     }
