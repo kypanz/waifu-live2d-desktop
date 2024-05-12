@@ -527,17 +527,18 @@ console.log('contador lips id => ', lipSyncIdCount);
       this._physics.evaluate(this._model, deltaTimeSeconds);
     }
 
+    // TODO : Aqui funcion de lipSync kypanz
     // リップシンクの設定
     if (this._lipsync) {
       let value = 0.0; // リアルタイムでリップシンクを行う場合、システムから音量を取得して、0~1の範囲で値を入力します。
       // console.log('LIPPP SYNC ???');
       this._wavFileHandler.update(deltaTimeSeconds);
-      value = this._wavFileHandler.getRms();
+      value = this._wavFileHandler.getRms() * 10;
       console.log('Get RMS =>', value);
-
+console.log('handler => ', this._wavFileHandler);
       for (let i = 0; i < this._lipSyncIds.getSize(); ++i) {
-        console.log('ID => ', this._lipSyncIds.at(i));
-        this._model.addParameterValueById(this._lipSyncIds.at(i), value, 0.8);
+        console.log('ID => ', this._lipSyncIds.at(i), ' | current iteration => ', i);
+        this._model.addParameterValueById(this._lipSyncIds.at(i), value, 1);
       }
     }
 

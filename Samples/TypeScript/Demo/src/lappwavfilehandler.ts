@@ -99,12 +99,9 @@ export class LAppWavFileHandler {
 
     console.log('buscando => ', filePath);
     if (!this.loadWavFile(filePath)) {
+      console.log('Resultado RRR => ', this.loadWavFile(filePath));
       console.log('se ejecuta esto del loadWavFile !')
       // TODO : lips, aqui van el movimiento de la boca
-      //console.log('MANAGER MODEL => ', ; 
-      const current_model = LAppLive2DManager.getInstance()._models._ptr[0];
-      const ky_expression = current_model._expressions._keyValues;
-      current_model.setExpression(ky_expression[1].first);
       const audio: any = document.getElementById('voice');
       audio.src = filePath;
       audio.play();
@@ -233,13 +230,13 @@ export class LAppWavFileHandler {
             this._pcmData[channelCount][sampleCount] = this.getPcmSample();
           }
         }
-// console.log('wavfile es => ', ret);
         ret = true;
       } catch (e) {
         console.log(e);
       }
     })();
-
+    
+    console.log('return es => ', ret);
     return ret;
   }
 

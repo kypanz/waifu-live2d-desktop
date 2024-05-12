@@ -83,7 +83,9 @@
 		{
 			"Target": "Parameter",
 			"Name": "LipSync",
-			"Ids": ["ParamMouthA"]
+			"Ids": [
+        "ParamMouthA"
+      ]
 		}
 	],
 	"HitAreas": [
